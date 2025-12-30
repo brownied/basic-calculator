@@ -94,6 +94,8 @@ buttonContainer.addEventListener('click', (key =>{
 console.log(calcList);
 
 const displayText = document.querySelector("#displayText");
+//const lastAnsText = document.querySelector('.lastAnsText');
+
 
 let a = 0;
 let b = 0;
