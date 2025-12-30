@@ -68,7 +68,8 @@ let calcList = [];
 
 
 buttonContainer.addEventListener('click', (key =>{
-    target = key.target;
+    let target = key.target;
+    if (!target.matches('button')) return;
     calcList.push(target.textContent)
     setDisplay();
 
@@ -142,11 +143,14 @@ function setDisplay(){
         lastInputCopy = lastInput
         lastInput = parseInt(lastInput)
         if (displayMaintenence && !isNaN(lastInput)) {
+            calcList = [];
+            calcList.push(lastInput);
             displayText.textContent = String(lastInput);
             displayMaintenence = false;
         }
         else{
             displayText.textContent += String(lastInputCopy);
+            displayMaintenence = false;
         }    
     }
 
