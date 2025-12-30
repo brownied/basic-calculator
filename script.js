@@ -188,6 +188,8 @@ function setDisplay(){
             calcList.push(lastInput);
             displayText.textContent = String(lastInput);
             displayMaintenence = false;
+            firstTime = true;
+            operatorClicked = false;
         }
         else{
             displayText.textContent += String(lastInputCopy);
