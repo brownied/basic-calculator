@@ -19,6 +19,10 @@ function divide(a, b){
 
 }
 
+function power(a, b){
+    return Math.pow
+}
+
 function operate(a, b, opp){
     switch (opp){
         case ("+"):
@@ -106,11 +110,11 @@ function setVals(){
     b = Number(calcList.slice(indexOp + 1, calcList.length - 1).join('')); 
 }
 
-
+let operatorClicked = false;
 
 function setDisplay(){
     lastInput = calcList[calcList.length - 1]
-
+    const operators = ["+", "-", "x", "÷"];
     
 
     
@@ -135,9 +139,31 @@ function setDisplay(){
     }
 
     else if (lastInput == "C"){
+        calcList.pop();
+        calcList.pop();
         displayText.textContent = displayText.textContent.substring(0, displayText.textContent.length - 1);
+        
     }
     
+    /*
+    
+    else if (operators.includes(lastInput) && operatorClicked) {
+        setVals();
+        val = operate(a, b, opp);
+        calcList = [];
+        calcList.push(val);
+        displayText.textContent = String(val);
+       displayMaintenence = true;
+        operatorClicked = false;
+    }
+
+    if(operators.includes(lastInput) && !operatorClicked){
+        operatorClicked = true
+    }
+    
+    */
+
+
 
     else{
         lastInputCopy = lastInput
@@ -153,5 +179,7 @@ function setDisplay(){
             displayMaintenence = false;
         }    
     }
+
+    console.log(calcList);
 
 }
