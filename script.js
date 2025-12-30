@@ -112,15 +112,9 @@ function setVals(){
 
 let operatorClicked = false;
 
-function setDisplay(){
-    lastInput = calcList[calcList.length - 1]
-    const operators = ["+", "-", "x", "÷"];
-    
+function equalSign(lastInput){
 
-    
-
-    
-    if (lastInput == "="){
+if (lastInput == "="){
         setVals();
         val = operate(a, b, opp);
         calcList = [];
@@ -132,40 +126,61 @@ function setDisplay(){
         displayText.textContent = String(val);
         displayMaintenence = true;
     }
+}
 
-    else if (lastInput == "AC"){
+let firstTime = false;
+
+function setDisplay(){
+    lastInput = calcList[calcList.length - 1]
+    const operators = ["+", "-", "x", "÷"];
+    
+    
+
+    equalSign(lastInput);
+
+    
+    if (lastInput == "AC"){
         displayText.textContent = "";
         calcList = [];
+        operatorClicked = false;
+        firstTime = true;
     }
+
+  
 
     else if (lastInput == "C"){
         calcList.pop();
         calcList.pop();
+        console.log(calcList);
+        if (firstTime) {
+            operatorClicked = false;
+        }
         displayText.textContent = displayText.textContent.substring(0, displayText.textContent.length - 1);
         
     }
     
-    /*
+    
     
     else if (operators.includes(lastInput) && operatorClicked) {
-        setVals();
-        val = operate(a, b, opp);
-        calcList = [];
-        calcList.push(val);
-        displayText.textContent = String(val);
-       displayMaintenence = true;
-        operatorClicked = false;
+        calcList.pop();
+        calcList.push("=");
+        equalSign("=");
+        calcList.push(lastInput);
+        displayMaintenence = true;
+        firstTime = false;
+        console.log("activated");
     }
 
-    if(operators.includes(lastInput) && !operatorClicked){
-        operatorClicked = true
+    else if(operators.includes(lastInput) && !operatorClicked){
+        operatorClicked = true;
+        firstTime = true;
     }
     
-    */
+   
 
+    //parse it to find whether or not it's an integer and restarts the calculations if it is.
 
-
-    else{
+    if ((lastInput != "=") && (lastInput != "AC") && (lastInput != "C")) {
         lastInputCopy = lastInput
         lastInput = parseInt(lastInput)
         if (displayMaintenence && !isNaN(lastInput)) {
@@ -180,6 +195,10 @@ function setDisplay(){
         }    
     }
 
+      
+
     console.log(calcList);
+    console.log("op clicked:" + operatorClicked);
+    console.log("first time:" + firstTime);
 
 }
