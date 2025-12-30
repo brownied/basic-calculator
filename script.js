@@ -130,6 +130,7 @@ if (lastInput == "="){
         setVals();
         val = operate(a, b, opp);
         calcList = [];
+        val = Number(val);
         val.toFixed(4);
         calcList.push(val);
         console.log(val);
@@ -232,19 +233,39 @@ const testButton = document.querySelector(".test");
 
 buttonContainer.addEventListener('mouseover', e => {
     target = e.target;
-    //target.classList.push('chuzzly');
     if (target.matches('.num')){
+        target.classList.add('chuzzly');
         target.style.backgroundColor = "#a5d8ff84";
     }
     else if(target.matches('.prom')){
+        target.classList.add('chuzzly');
         target.style.backgroundColor = "#1971c2";
     }
+
     
 });
 
 buttonContainer.addEventListener('mouseout', e =>{
     target = e.target;
     if (target.matches('.num') || target.matches(".prom")){
+    target.classList.add('chuzzlyOut');
     target.style.backgroundColor = "transparent";
     }
+
+    indexOfChuzzly = 0;
+    target.classList.forEach((item, index) => {
+        if (item == "chuzzly"){
+            indexOfChuzzly = index;
+        }
+    });
+
+    target.classList.remove("chuzzly");
+    target.classList.remove("chuzzlyOut");
+    target.classList.remove(target.classList.length - 1);
+    
 });
+
+
+num = 34.44444444444444444443
+
+console.log(num.toFixed(4));

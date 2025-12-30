@@ -78,6 +78,17 @@ button{
 .chuzzly{
     animation: .2s linear 0s pop-up;
     animation-iteration-count: 1;
+    transform: translateY(-2px);
+}
+
+.chuzzlyOut{
+    animation: .2s linear 0s pop-down;
+    animation-iteration-count: 1;
+    transform: translateY(0px);
+}
+
+.transformYUp{
+    transform: translateY(-2px);
 }
 
 
@@ -89,14 +100,14 @@ button{
          
     }
     to {
-        transform: translateY(-5px);
+        transform: translateY(-2px);
         background-color: #a5d8ff84;
     }
 }
 
 @keyframes pop-down{
     from {
-        transform: translateY(-5px);
+        transform: translateY(-2px);
         background-color: #a5d8ff84;
     }
 
