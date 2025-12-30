@@ -15,12 +15,14 @@ function multiply(a, b){
 
 function divide(a, b){
 
-    return a/b;
+
+    
+    return (a/b)
 
 }
 
 function power(a, b){
-    return Math.pow
+    return Math.pow(a, b);
 }
 
 function operate(a, b, opp){
@@ -37,6 +39,8 @@ function operate(a, b, opp){
         case ("÷"):
             return divide(a, b);
             break;
+        case ("^"):
+            return power(a, b);
     }
 
 }
@@ -74,7 +78,15 @@ let calcList = [];
 buttonContainer.addEventListener('click', (key =>{
     let target = key.target;
     if (!target.matches('button')) return;
+    if (target.textContent == "xy"){
+        calcList.push("^");
+    }
+    else if (displayText.textContent.includes(".") && target.textContent == "."){
+            return; 
+    }
+    else{
     calcList.push(target.textContent)
+    }
     setDisplay();
 
 }));
@@ -92,7 +104,7 @@ let displayMaintenence = false;
 
 function setVals(){
     
-    const operators = ["+", "-", "x", "÷"];
+    const operators = ["+", "-", "x", "÷", "^"];
     let indexOp = -1;
     
     for (let i = calcList.length - 1; i >= 0; i--){
@@ -118,6 +130,7 @@ if (lastInput == "="){
         setVals();
         val = operate(a, b, opp);
         calcList = [];
+        val.toFixed(4);
         calcList.push(val);
         console.log(val);
         console.log(a)
@@ -132,13 +145,23 @@ let firstTime = false;
 
 function setDisplay(){
     lastInput = calcList[calcList.length - 1]
-    const operators = ["+", "-", "x", "÷"];
+    const operators = ["+", "-", "x", "÷", "^"];
     
-    
+
 
     equalSign(lastInput);
 
+    if (lastInput == "."){
+        if (displayText.textContent.includes(".")){
+            return;
+        }
+    }
     
+    if (lastInput == "xy"){
+        lastInput = "^";
+    }
+
+     //If input is AC, clear calc display and list
     if (lastInput == "AC"){
         displayText.textContent = "";
         calcList = [];
@@ -147,7 +170,7 @@ function setDisplay(){
     }
 
   
-
+    //If input is C, delete one number from list and display
     else if (lastInput == "C"){
         calcList.pop();
         calcList.pop();
@@ -159,7 +182,7 @@ function setDisplay(){
         
     }
     
-    
+    //If operator is pressed but there's already been an operator pressed
     
     else if (operators.includes(lastInput) && operatorClicked) {
         calcList.pop();
@@ -204,3 +227,24 @@ function setDisplay(){
     console.log("first time:" + firstTime);
 
 }
+
+const testButton = document.querySelector(".test");
+
+buttonContainer.addEventListener('mouseover', e => {
+    target = e.target;
+    //target.classList.push('chuzzly');
+    if (target.matches('.num')){
+        target.style.backgroundColor = "#a5d8ff84";
+    }
+    else if(target.matches('.prom')){
+        target.style.backgroundColor = "#1971c2";
+    }
+    
+});
+
+buttonContainer.addEventListener('mouseout', e =>{
+    target = e.target;
+    if (target.matches('.num') || target.matches(".prom")){
+    target.style.backgroundColor = "transparent";
+    }
+});

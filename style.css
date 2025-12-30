@@ -63,6 +63,8 @@ button{
 }
 
 #displayText{
+    overflow: hidden;
+    
     text-align: right;
     margin: 20px;
     margin-top: 35px;
@@ -71,4 +73,36 @@ button{
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+.chuzzly{
+    animation: .2s linear 0s pop-up;
+    animation-iteration-count: 1;
+}
+
+
+
+
+@keyframes pop-up{
+    from {
+        transform: translateY(0px);
+         
+    }
+    to {
+        transform: translateY(-5px);
+        background-color: #a5d8ff84;
+    }
+}
+
+@keyframes pop-down{
+    from {
+        transform: translateY(-5px);
+        background-color: #a5d8ff84;
+    }
+
+    to {
+        transform: translateY(0px);
+        background-color: transparent;
+    }
+
 }
